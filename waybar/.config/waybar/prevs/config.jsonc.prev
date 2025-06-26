@@ -1,0 +1,75 @@
+{
+	// https://github.com/mylinuxforwork/dotfiles/blob/main/share/dotfiles/.config/waybar/modules.json
+
+	"layer": "top",
+	"modules-left": ["hyprland/workspaces"],
+	"modules-center": ["hyprland/window"],
+	"modules-right": ["custom/chatgpt", "network", "pulseaudio", "temperature", "cpu", "memory", "clock"],
+	"mpd": {
+		"tooltip": false,
+		"format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+		"format-disconnected": "ﳌ",
+		"format-stopped": "",
+        	"state-icons": {
+            		"playing": "",
+            		"paused": ""
+        	}
+	},
+	"pulseaudio": {
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": " {volume}%",
+		"format-muted": ""
+	},
+	"network": {
+		"tooltip": false,
+		"format-wifi": "  {essid} {ipaddr}",
+		"format-ethernet": "  {ipaddr}"
+	},
+	"cpu": {
+		"tooltip": false,
+		"format": "  {}%"
+	},
+	"memory": {
+		"tooltip": false,
+		"format": "󰆧 {}%"
+	},
+	"hyprland/workspaces": {
+		"disable-scroll": true,
+		"on-click": "activate",
+		"active-only": false,
+		"all-outputs": true,
+		"format": "{}",
+		"format-icons": {
+			"urgent": "",
+			"active": "",
+			"default": ""
+		},
+		"persistent-workspaces": {
+			"*": 10
+		}
+    },
+	"hyprland/window": {
+		"max-length": 60,
+		"rewrite": {
+			"(.*) - Brave": "$1",
+			"(.*) - Chromium": "$1",
+			"(.*) - Brave Search": "$1",
+			"(.*) - Outlook": "$1",
+			"(.*) Microsoft Teams": "$1"
+		},
+		"separate-outputs": true
+	},
+	"custom/cliphist": {
+		"format": "",
+		"on-click": "sleep 0.1 && ~/.scripts/cliphist.sh",
+		"on-click-right": "sleep 0.1 && ~/.scripts/cliphist.sh d",
+		"on-click-middle": "sleep 0.1 && ~/.scripts/cliphist.sh w",
+		"tooltip-format": "Left: Open clipboard Manager\nRight: Delete an entry\nMiddle: Clear list"
+  	},
+	"custom/chatgpt": {
+    	"format": " ",
+    	"on-click": "~/.scripts/chatgpt.sh",
+    	"tooltip-format": "AI Support"
+  	}
+}

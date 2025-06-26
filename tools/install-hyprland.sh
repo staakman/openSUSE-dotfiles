@@ -1,8 +1,11 @@
+#!/usr/bin/env bash
+
 sudo zypper install --no-recommends \
 	hyprland \
 	hyprland-qtutils \
 	hyprland-wallpapers \
 	waybar \
+	polkit-gnome \
 	wofi \
 	xdg-desktop-portal-hyprland \
 	xdg-desktop-portal-wlr \

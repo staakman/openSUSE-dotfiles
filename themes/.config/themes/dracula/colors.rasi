@@ -1,0 +1,14 @@
+/* Dracula colors */
+
+@define-color s_background    #282a36;
+@define-color s_current_line  #44475a;
+@define-color s_selection     #44475a;
+@define-color s_foreground    #f8f8f2;
+@define-color s_comment       #6272a4;
+@define-color s_cyan          #8be9fd;
+@define-color s_green         #50fa7b;
+@define-color s_orange        #ffb86c;
+@define-color s_pink          #ff79c6;
+@define-color s_purple        #bd93f9;
+@define-color s_red           #ff5555;
+@define-color s_yellow        #f1fa8c;

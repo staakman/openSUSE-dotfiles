@@ -28,6 +28,8 @@ $cmd_duration\
 $line_break\
 $character"""
 
+command_timeout = 5000
+
 # palette = 'catppuccin_frappe'
 # palette = 'catppuccin_latte'
 # palette = 'catppuccin_mocha'

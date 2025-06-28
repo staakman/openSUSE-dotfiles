@@ -15,6 +15,7 @@ sudo zypper install --no-recommends \
 	mako \
 	hyprpaper \
 	kitty \
+	ghostty \
 	thunar \
 	pavucontrol \
 	brightnessctl \

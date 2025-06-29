@@ -27,6 +27,7 @@
 #clock,
 #custom-power,
 #custom-reboot,
+#custom-beamer-toggle,
 #bluetooth,
 #battery,
 #pulseaudio,
@@ -52,6 +53,7 @@
 #custom-reboot{
   background-color: #a6e3a1;
 }
+
 #bluetooth{
   background-color: #f9e2af;
 }
@@ -65,7 +67,7 @@
   background-color: #a6a3a1;
 }
 #custom-temperature{
-  background-color: #74c7ec;
+  background-color: #cba6f7; /* #74c7ec */
 }
 #memory{
   background-color: #f7768e;
@@ -81,6 +83,14 @@
 }
 #window{
   background-color: #74c7ec;
+}
+
+#custom-beamer-toggle.on{
+  background-color: #a6e3a1;
+}
+
+#custom-beamer-toggle.off {
+  background-color: #666666;
 }
 
 #waybar.hidden {

@@ -1,0 +1,93 @@
+{
+  "modules-right": [
+      "custom/typer",
+      // "custom/beamer-toggle",
+      "network",
+      "bluetooth",
+      "pulseaudio",
+      "custom/temperature",
+      "memory",
+      "cpu",
+      "clock"
+  ],
+  "custom/typer": {
+    "format": "󰧹",
+    "tooltip": "Left click: type clipboard (or ~/.cache/typer.txt)",
+    "on-click": "~/.config/waybar/scripts/typer.sh",
+    "on-click-middle": "ydotool type -f ~/.cache/typer.txt"
+  },
+  "custom/beamer-toggle": {
+    "exec": "~/.config/waybar/scripts/toggle_beamer.sh",
+    "interval": 1,
+    "return-type": "json",
+    "tooltip": "Toggle HDMI-A-4 Beamer",
+    "on-click": "~/.config/waybar/scripts/toggle_beamer.sh toggle"
+  },
+  "network": {
+    "format-wifi": " 󰤨 {essid} ",
+    "format-ethernet": " Wired ",
+    "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
+    "format-linked": " 󱘖 {ifname} (No IP) ",
+    "format-disconnected": "  Disconnected ",
+    "format-alt": " 󰤨 {signalStrength}% ",
+    "interval": 1
+  },
+  "bluetooth": {
+    "format": "  {status} ",
+    "format-connected": "  {device_alias} ",
+    "format-connected-battery": "  {device_alias}{device_battery_percentage}% ",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "blueman-manager"
+  },
+  "pulseaudio": {
+    "format": "{icon}{volume}% ",
+    "format-muted": " 󰖁 0% ",
+    "format-icons": {
+      "headphone": "  ",
+      "hands-free": "  ",
+      "headset": "  ",
+      "phone": "  ",
+      "portable": "  ",
+      "car": "  ",
+      "default": [
+        "  ",
+        "  ",
+        "  "
+      ]
+    },
+    "on-click-right": "pavucontrol -t 3",
+    "on-click": "pactl -- set-sink-mute 0 toggle",
+    "tooltip": true,
+    "tooltip-format": "current volume: {volume}%"
+  },
+  "custom/temperature": {
+    "exec": "sensors | awk '/^Package id 0:/ {print int($4)}'",
+    "format": "  {}°C ",
+    "interval": 5,
+    "tooltip": true,
+    "tooltip-format": "current CPU temp: {}°C"
+  },
+  "memory": {
+    "format": "  {used:0.1f}G/{total:0.1f}G ",
+    "tooltip": true,
+    "tooltip-format": "current memory usage: {used:0.2f}G/{total:0.2f}G"
+  },
+  "cpu": {
+    "format": "  {usage}% ",
+    "tooltip": true
+  },
+  "clock": {
+    "interval": 1,
+    "timezone": "Europe/Amsterdam",
+    "format": "  {:%H:%M} ",
+    "tooltip": true,
+    "tooltip-format": "{:L%Y year %m month %d day, %A}"
+  },
+  "tray": {
+    "icon-size": 17,
+    "spacing": 6
+  }
+}

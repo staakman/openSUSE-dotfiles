@@ -1,150 +1,172 @@
-{
-  "layer": "top",
-  "position": "top",
-  "height": 45,
-  "spacing": 0,
-  "modules-left": [
-    "hyprland/workspaces",
-    "custom/lock",
-    "custom/reboot",
-    "custom/power"
-  ],
-  "modules-center": ["hyprland/window"],
-  "modules-right": [
-    "custom/beamer-toggle",
-    "network",
-    "bluetooth",
-    "pulseaudio",
-    "custom/temperature",
-    "memory",
-    "cpu",
-    "clock"
-  ],
-  "hyprland/workspaces": {
-    "disable-scroll": false,
-    "all-outputs": false,
-    "format": "{icon}",
-    "on-click": "activate",
-    "persistent-workspaces": {
-    "*": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[
+  {
+    "output": "DP-6",
+    "layer": "top",
+    "position": "top",
+    "height": 45,
+    "spacing": 0,
+    "modules-left": [
+      "hyprland/workspaces",
+      "custom/teams",
+      "custom/slack",
+      "custom/lock",
+      "custom/reboot",
+      "custom/power"
+    ],
+    "modules-center": [
+      "hyprland/window"
+    ],
+    "modules-right": [
+      "custom/typer",
+      "network",
+      "bluetooth",
+      "pulseaudio",
+      "custom/temperature",
+      "memory",
+      "cpu",
+      "clock"
+    ],
+    "hyprland/workspaces": {
+      "disable-scroll": true,
+      "all-outputs": false,
+      "on-click": "activate",
+      "persistent-workspaces": {
+        "DP-6": [1, 2, 3, 4, 5]
+      },
+      "format": "{icon}"
     },
-    "format-icons":{
-      "active": "󱓻"
+    "custom/slack": {
+      "format": "  ",
+      "tooltip": "slack",
+      "on-click": "~/.config/waybar/scripts/app_switcher.sh com.slack.Slack 'flatpak run com.slack.Slack'",
+      "interval": 0,
+      "class": "app-button-slack"
+    },
+    "custom/teams": {
+      "format": " 󰊻 ", 
+      "tooltip": "teams for linux",
+      "on-click": "~/.config/waybar/scripts/app_switcher.sh com.github.IsmaelMartinez.teams_for_linux 'flatpak run com.github.IsmaelMartinez.teams_for_linux'",
+      "interval": 0,
+      "class": "app-button-teams"
+    },
+    "custom/lock": {
+    "format": "  ",
+    "on-click": "hyprlock",
+    "tooltip": true,
+    "tooltip-format": "lock screen"
+    },
+    "custom/reboot": {
+      "format": "  ",
+      "on-click": "systemctl reboot",
+      "tooltip": true,
+      "tooltip-format": "reboot system"
+    },
+    "custom/power": {
+      "format": "  ",
+      "on-click": "systemctl poweroff",
+      "tooltip": true,
+      "tooltip-format": "power off"
+    },
+    "custom/typer": {
+    "format": "󰧹",
+    "tooltip": "Left click: type clipboard (or ~/.cache/typer.txt)",
+    "on-click": "~/.config/waybar/scripts/typer.sh",
+    "on-click-middle": "ydotool type -f ~/.cache/typer.txt"
+    },
+    "custom/beamer-toggle": {
+      "exec": "~/.config/waybar/scripts/toggle_beamer.sh",
+      "interval": 1,
+      "return-type": "json",
+      "tooltip": "Toggle HDMI-A-4 Beamer",
+      "on-click": "~/.config/waybar/scripts/toggle_beamer.sh toggle"
+    },
+    "network": {
+      "format-wifi": " 󰤨 {essid} ",
+      "format-ethernet": " Wired ",
+      "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
+      "format-linked": " 󱘖 {ifname} (No IP) ",
+      "format-disconnected": "  Disconnected ",
+      "format-alt": " 󰤨 {signalStrength}% ",
+      "interval": 1
+    },
+    "bluetooth": {
+      "format": "  {status} ",
+      "format-connected": "  {device_alias} ",
+      "format-connected-battery": "  {device_alias}{device_battery_percentage}% ",
+      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+      "on-click": "blueman-manager"
+    },
+    "pulseaudio": {
+      "format": "{icon}{volume}% ",
+      "format-muted": " 󰖁 0% ",
+      "format-icons": {
+        "headphone": "  ",
+        "hands-free": "  ",
+        "headset": "  ",
+        "phone": "  ",
+        "portable": "  ",
+        "car": "  ",
+        "default": [
+          "  ",
+          "  ",
+          "  "
+        ]
+      },
+      "on-click-right": "pavucontrol -t 3",
+      "on-click": "pactl -- set-sink-mute 0 toggle",
+      "tooltip": true,
+      "tooltip-format": "current volume: {volume}%"
+    },
+    "custom/temperature": {
+      "exec": "sensors | awk '/^Package id 0:/ {print int($4)}'",
+      "format": "  {}°C ",
+      "interval": 5,
+      "tooltip": true,
+      "tooltip-format": "current CPU temp: {}°C"
+    },
+    "memory": {
+      "format": "  {used:0.1f}G/{total:0.1f}G ",
+      "tooltip": true,
+      "tooltip-format": "current memory usage: {used:0.2f}G/{total:0.2f}G"
+    },
+    "cpu": {
+      "format": "  {usage}% ",
+      "tooltip": true
+    },
+    "clock": {
+      "interval": 1,
+      "timezone": "Europe/Amsterdam",
+      "format": "  {:%H:%M} ",
+      "tooltip": true,
+      "tooltip-format": "{:L%Y year %m month %d day, %A}"
+    },
+    "tray": {
+      "icon-size": 17,
+      "spacing": 6
     }
   },
-  "custom/lock": {
-  "format": "  ",
-  "on-click": "hyprlock",
-  "tooltip": true,
-  "tooltip-format": "lock screen"
-  },
-  "custom/reboot": {
-    "format": "  ",
-    "on-click": "systemctl reboot",
-    "tooltip": true,
-    "tooltip-format": "reboot system"
-  },
-  "custom/power": {
-    "format": "  ",
-    "on-click": "systemctl poweroff",
-    "tooltip": true,
-    "tooltip-format": "power off"
-  },
-  "network": {
-    "format-wifi": " 󰤨 {essid} ",
-    "format-ethernet": " Wired ",
-    "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
-    "format-linked": " 󱘖 {ifname} (No IP) ",
-    "format-disconnected": "  Disconnected ",
-    "format-alt": " 󰤨 {signalStrength}% ",
-    "interval": 1
-  },
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": " {icon} {capacity}% ",
-    "format-charging": " 󱐋{capacity}%",
-	  "interval": 1,
-    "format-icons": ["󰂎", "󰁼", "󰁿", "󰂁", "󰁹"],
-    "tooltip": true
-  },
-  "pulseaudio": {
-    "format": "{icon}{volume}% ",
-    "format-muted": " 󰖁 0% ",
-    "format-icons": {
-      "headphone": "  ",
-      "hands-free": "  ",
-      "headset": "  ",
-      "phone": "  ",
-      "portable": "  ",
-      "car": "  ",
-      "default": [
-        "  ",
-        "  ",
-        "  "
-      ]
-    },
-    "on-click-right": "pavucontrol -t 3",
-    "on-click": "pactl -- set-sink-mute 0 toggle",
-    "tooltip": true,
-    "tooltip-format": "current volume: {volume}%"
-  },
-  "custom/temperature": {
-    "exec": "sensors | awk '/^Package id 0:/ {print int($4)}'",
-    "format": "  {}°C ",
-    "interval": 5,
-    "tooltip": true,
-    "tooltip-format": "current CPU temp: {}°C"
-  },
-  "memory": {
-    "format": "  {used:0.1f}G/{total:0.1f}G ",
-    "tooltip": true,
-    "tooltip-format": "current memory usage: {used:0.2f}G/{total:0.2f}G"
-  },
-  "cpu": {
-    "format": "  {usage}% ",
-    "tooltip": true
-  },
-  "clock": {
-    "interval": 1,
-    "timezone": "Europe/Amsterdam",
-    "format": "  {:%H:%M} ",
-    "tooltip": true,
-    "tooltip-format": "{:L%Y year %m month %d day, %A}"
-  },
-  "tray": {
-    "icon-size": 17,
-    "spacing": 6
-  },
-  "backlight": {
-    "device": "intel_backlight",
-    "format": "{icon}{percent}% ",
-    "tooltip": true,
-    "tooltip-format": "current screen brightness: {percent}%",
-    "format-icons": [
-      " 󰃞 ",
-      " 󰃝 ", 
-      " 󰃟 ",
-      " 󰃠 "
-    ]
-  },
-  "bluetooth": {
-    "format": "  {status} ",
-    "format-connected": "  {device_alias} ",
-    "format-connected-battery": "  {device_alias}{device_battery_percentage}% ",
-    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-    "on-click": "blueman-manager"
-  },
-  "custom/beamer-toggle": {
-  "exec": "~/.config/waybar/scripts/toggle-beamer.sh",
-  "interval": 1,
-  "return-type": "json",
-  "tooltip": "Toggle HDMI-A-4 Beamer",
-  "on-click": "~/.config/waybar/scripts/toggle-beamer.sh toggle"
+  {
+    "output": "HDMI-A-4",
+    "layer": "top",
+    "position": "top",
+    "height": 45,
+    "spacing": 0,
+    "modules-left": [
+      "hyprland/workspaces"
+    ],
+    "modules-center": ["hyprland/window"],
+    
+    "hyprland/workspaces": {
+      "disable-scroll": true,
+      "all-outputs": false,
+      "on-click": "activate",
+      "persistent-workspaces": {
+        "HDMI-A-4": [11, 12, 13, 14, 15]
+      },
+      "format": "{icon}"
+    }
   }
-}
+]

@@ -43,5 +43,7 @@ if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
 else
     export EDITOR='nvim'
+    export VISUAL='nvim'
 fi
 
+alias ofv="$HOME/.scripts/setup-work-vpn.sh"

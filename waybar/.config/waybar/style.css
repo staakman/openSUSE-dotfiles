@@ -27,6 +27,10 @@
 #clock,
 #custom-power,
 #custom-reboot,
+#custom-firefox,
+#custom-slack,
+#custom-teams,
+#custom-typer,
 #custom-beamer-toggle,
 #bluetooth,
 #battery,
@@ -43,9 +47,14 @@
   background-color: #1e1e2e;
   color: #181825;
 }
-
-#clock {
-  background-color: #89b4fa;
+#custom-teams {
+  background-color: #74c7ec; /* #a6e3a1 */
+}
+#custom-firefox {
+  background-color: #f7768e;
+}
+#custom-slack {
+  background-color: #cba6f7;
 }
 #custom-power{
   background-color: #f38ba8;
@@ -53,7 +62,9 @@
 #custom-reboot{
   background-color: #a6e3a1;
 }
-
+#clock {
+  background-color: #89b4fa;
+}
 #bluetooth{
   background-color: #f9e2af;
 }
@@ -84,6 +95,9 @@
 #window{
   background-color: #74c7ec;
 }
+#custom-typer {
+  background-color: #f7768e;
+}
 
 #custom-beamer-toggle.on{
   background-color: #a6e3a1;
@@ -101,6 +115,11 @@
   /* background-color: #282a36; rgba(24,24,37,1.0); */
   border: none;
   box-shadow: none;
+}
+
+#workspaces button.workspace-6 {
+  background-color: red;
+  color: white;
 }
 
 #workspaces button {

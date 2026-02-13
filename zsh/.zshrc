@@ -46,4 +46,10 @@ else
     export VISUAL='nvim'
 fi
 
+rename_workspace() {
+    # Execute the Hyprland command
+    hyprctl dispatch renameworkspace $1 "$2"
+}
+
 alias ofv="$HOME/.scripts/setup-work-vpn.sh"
+alias rw=rename_workspace
